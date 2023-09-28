@@ -9,7 +9,8 @@ const Header = () => {
           <Navbar.Brand href='/'>ProShop</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ml-auto'>
+            <Nav className='ms-auto'>
+              {/* ms : margin from start (start is left = ml in bootstrap 4). me : margin from end (end is right = mr in bootstrap 4) */}
               <Nav.Link href='/cart'>Cart</Nav.Link>
               <Nav.Link href='/login'>Sign In</Nav.Link>
             </Nav>
