@@ -1,16 +1,18 @@
 /*this is completely separate from the database*/
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import users from './data/users';
+import colors from 'colors';
+import users from './data/users.js';
 import products from './data/products.js';
-import User from './models/userModel';
-import Product from './models/productModel';
-import Order from './models/orderModel';
+import User from './models/userModel.js';
+import Product from './models/productModel.js';
+import Order from './models/orderModel.js';
 import connectDB from './config/db.js';
 
 dotenv.config();
 
-connectDB();
+/*putting await before connectBD() ensures the database connection is established first before moving on */
+await connectDB();
 
 /*function for importing the data. async is used because everything in mongoose returns a promise */
 const importData = async () => {
@@ -34,10 +36,10 @@ const importData = async () => {
     await Product.insertMany(sampleProducts);
     /*sampleProducts is inserted in the Product model */
 
-    console.log('Data Imported!');
+    console.log('Data Imported!'.green.inverse);
     process.exit();
   } catch (error) {
-    console.error(`${error}`);
+    console.error(`${error}`.red.inverse);
     process.exit(1);
   }
 };
@@ -49,10 +51,10 @@ const destroyData = async () => {
     await Product.deleteMany();
     await User.deleteMany();
 
-    console.log('Data Destroyed!');
+    console.log('Data Destroyed!'.red.inverse);
     process.exit();
   } catch (error) {
-    console.error(`${error}`);
+    console.error(`${error}`.red.inverse);
     process.exit(1);
   }
 };
